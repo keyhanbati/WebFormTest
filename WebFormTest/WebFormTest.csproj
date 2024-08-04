@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2388F016-35A4-4529-B400-B71970B38756}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebFormTest</RootNamespace>
+    <AssemblyName>WebFormTest</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44304</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.3.4.1\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.5.0.0\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.1.3\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="ChartForm.aspx" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="CssX.html" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="NewForm.aspx" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Site.Master" />
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config" />
+    <Content Include="Bundle.config" />
+    <Content Include="Site.Mobile.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ChartForm.aspx.cs">
+      <DependentUpon>ChartForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChartForm.aspx.designer.cs">
+      <DependentUpon>ChartForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="db\AccountBalances.cs" />
+    <Compile Include="db\Accounts.cs" />
+    <Compile Include="db\AllFiles.cs" />
+    <Compile Include="db\AllFilesPro.cs" />
+    <Compile Include="db\ApiLogs.cs" />
+    <Compile Include="db\AsnafLogs.cs" />
+    <Compile Include="db\Attachments.cs" />
+    <Compile Include="db\Banks.cs" />
+    <Compile Include="db\BasicInformationDetails.cs" />
+    <Compile Include="db\BasicInformations.cs" />
+    <Compile Include="db\BranPercentageLimitations.cs" />
+    <Compile Include="db\BranPercentages.cs" />
+    <Compile Include="db\BuyerAgents.cs" />
+    <Compile Include="db\BuyerAsnafStatuses.cs" />
+    <Compile Include="db\BuyerBankCards.cs" />
+    <Compile Include="db\BuyerComments.cs" />
+    <Compile Include="db\BuyerConsumptionTypes.cs" />
+    <Compile Include="db\BuyerCookingSubTypes.cs" />
+    <Compile Include="db\BuyerCookingTypes.cs" />
+    <Compile Include="db\BuyerDismissals.cs" />
+    <Compile Include="db\BuyerDismissalStatuses.cs" />
+    <Compile Include="db\BuyerFacilities.cs" />
+    <Compile Include="db\BuyerFiles.cs" />
+    <Compile Include="db\BuyerFraud.cs" />
+    <Compile Include="db\BuyerGroupBuyers.cs" />
+    <Compile Include="db\BuyerGroups.cs" />
+    <Compile Include="db\BuyerInfoCorrections.cs" />
+    <Compile Include="db\BuyerInfoCorrectionsOldData.cs" />
+    <Compile Include="db\BuyerInfoCorrectionStatuses.cs" />
+    <Compile Include="db\BuyerMaping.cs" />
+    <Compile Include="db\BuyerMonths.cs" />
+    <Compile Include="db\BuyerOwners.cs" />
+    <Compile Include="db\BuyerPerformanceGoups.cs" />
+    <Compile Include="db\BuyerPos.cs" />
+    <Compile Include="db\BuyerProductTemplateLogs.cs" />
+    <Compile Include="db\BuyerProductTemplates.cs" />
+    <Compile Include="db\BuyerPurchaseTypes.cs" />
+    <Compile Include="db\BuyerReceiptLimitations.cs" />
+    <Compile Include="db\Buyers.cs" />
+    <Compile Include="db\BuyerScores.cs" />
+    <Compile Include="db\BuyerStatuses.cs" />
+    <Compile Include="db\BuyerSubCountryDivisionIds.cs" />
+    <Compile Include="db\BuyerTransportTypeLimitations.cs" />
+    <Compile Include="db\CallCount.cs" />
+    <Compile Include="db\CarPlateLetters.cs" />
+    <Compile Include="db\Cars.cs" />
+    <Compile Include="db\CarTypes.cs" />
+    <Compile Include="db\CdcExceptTable.cs" />
+    <Compile Include="db\CountryDivisionCoordinates.cs" />
+    <Compile Include="db\CountryDivisions.cs" />
+    <Compile Include="db\CountryDivisionsback_1402_09_04.cs" />
+    <Compile Include="db\CountryDivisionsFlat.cs" />
+    <Compile Include="db\CountryDivisionsFlatback_1402_09_04.cs" />
+    <Compile Include="db\C__Buyers14020824.cs" />
+    <Compile Include="db\C__BuyerStatuses14020913.cs" />
+    <Compile Include="db\C__NaninoBuyerSales14020722.cs" />
+    <Compile Include="db\C___Buyers.cs" />
+    <Compile Include="db\DealingAmountLimitations.cs" />
+    <Compile Include="db\DealingLimitations.cs" />
+    <Compile Include="db\DealingSeperateLimitations.cs" />
+    <Compile Include="db\DotinLogs.cs" />
+    <Compile Include="db\DotinRsCodes.cs" />
+    <Compile Include="db\DriverCars.cs" />
+    <Compile Include="db\DriverCarTransportationCompanies.cs" />
+    <Compile Include="db\Drivers.cs" />
+    <Compile Include="db\DriverTransportationCompanies.cs" />
+    <Compile Include="db\Faq.cs" />
+    <Compile Include="db\FlourSalesDetails.cs" />
+    <Compile Include="db\GflourInquiryDetails.cs" />
+    <Compile Include="db\Histories.cs" />
+    <Compile Include="db\HolidayCalendarCountryDivisions.cs" />
+    <Compile Include="db\HolidayCalendars.cs" />
+    <Compile Include="db\IFCMSEntities.cs" />
+    <Compile Include="db\Intervals.cs" />
+    <Compile Include="db\JobLogs.cs" />
+    <Compile Include="db\Logs.cs" />
+    <Compile Include="db\MessageReceivers.cs" />
+    <Compile Include="db\Messages.cs" />
+    <Compile Include="db\MessageSendLogs.cs" />
+    <Compile Include="db\NaninoBuyerCookingTypes.cs" />
+    <Compile Include="db\NaninoBuyerDiscrepancies.cs" />
+    <Compile Include="db\NaninoBuyerDiscrepancyStatuses.cs" />
+    <Compile Include="db\NaninoBuyerPos.cs" />
+    <Compile Include="db\NaninoBuyerPosSubmitLog.cs" />
+    <Compile Include="db\NaninoBuyers.cs" />
+    <Compile Include="db\NaninoBuyerSaleAggregates.cs" />
+    <Compile Include="db\NaninoBuyerSales.cs" />
+    <Compile Include="db\NaninoBuyerStatusReportLog.cs" />
+    <Compile Include="db\NaninoBuyerViolations.cs" />
+    <Compile Include="db\NaninoCookingTypes.cs" />
+    <Compile Include="db\NaninoProvinces.cs" />
+    <Compile Include="db\NaninoViolationTypes.cs" />
+    <Compile Include="db\NationalCodes.cs" />
+    <Compile Include="db\OrderInquiries.cs" />
+    <Compile Include="db\OrderItems.cs" />
+    <Compile Include="db\Orders.cs" />
+    <Compile Include="db\OrdersInquiryRequests.cs" />
+    <Compile Include="db\OrderStatuses.cs" />
+    <Compile Include="db\OrganizationCountryDivisions.cs" />
+    <Compile Include="db\Organizations.cs" />
+    <Compile Include="db\Packages.cs" />
+    <Compile Include="db\PaylaLogs.cs" />
+    <Compile Include="db\PaymentInstallmentDetails.cs" />
+    <Compile Include="db\PaymentItems.cs" />
+    <Compile Include="db\PaymentOperationDetails.cs" />
+    <Compile Include="db\PaymentOperations.cs" />
+    <Compile Include="db\Payments.cs" />
+    <Compile Include="db\PaymentStatuses.cs" />
+    <Compile Include="db\PaymentToken.cs" />
+    <Compile Include="db\PaymentTokenStatuses.cs" />
+    <Compile Include="db\Persons.cs" />
+    <Compile Include="db\PersonsHistory.cs" />
+    <Compile Include="db\PersonUpdateLogs.cs" />
+    <Compile Include="db\PhaseProductTemplates.cs" />
+    <Compile Include="db\Phases.cs" />
+    <Compile Include="db\PopulationInfo.cs" />
+    <Compile Include="db\Population_Amar.cs" />
+    <Compile Include="db\ProductDetails.cs" />
+    <Compile Include="db\ProductInventories.cs" />
+    <Compile Include="db\ProductRates.cs" />
+    <Compile Include="db\Products.cs" />
+    <Compile Include="db\ProductTemplateBranPercentages.cs" />
+    <Compile Include="db\ProductTemplates.cs" />
+    <Compile Include="db\QoutaIncerasePercentages.cs" />
+    <Compile Include="db\QuotaFileDetailsExportLog.cs" />
+    <Compile Include="db\QuotaFileHeaderExportLog.cs" />
+    <Compile Include="db\QuotaFileImportLogDetails.cs" />
+    <Compile Include="db\QuotaFileImportLogMessages.cs" />
+    <Compile Include="db\QuotaFileImportLogs.cs" />
+    <Compile Include="db\QuotaFiles.cs" />
+    <Compile Include="db\QuotaPhaseConfiguration.cs" />
+    <Compile Include="db\Quotations.cs" />
+    <Compile Include="db\QutaBatchLogDetails.cs" />
+    <Compile Include="db\QutaBatchLogs.cs" />
+    <Compile Include="db\RawFlourDetailFileImportLogs.cs" />
+    <Compile Include="db\RawFlourDetailImportLogMessages.cs" />
+    <Compile Include="db\RawFlourDetails.cs" />
+    <Compile Include="db\SalePlanInstallments.cs" />
+    <Compile Include="db\SalesPlans.cs" />
+    <Compile Include="db\SellerPersons.cs" />
+    <Compile Include="db\SellerProducts.cs" />
+    <Compile Include="db\SellerProductTemplates.cs" />
+    <Compile Include="db\SellerRates.cs" />
+    <Compile Include="db\Sellers.cs" />
+    <Compile Include="db\SellerStatuses.cs" />
+    <Compile Include="db\SellerSuspensions.cs" />
+    <Compile Include="db\SellerTransportTypes.cs" />
+    <Compile Include="db\SendSmsDetailLog.cs" />
+    <Compile Include="db\SendSmsMainLog.cs" />
+    <Compile Include="db\ServiceLogs.cs" />
+    <Compile Include="db\Settings.cs" />
+    <Compile Include="db\ShipmentCosts.cs" />
+    <Compile Include="db\ShipmentInfoDetails.cs" />
+    <Compile Include="db\ShipmentInfos.cs" />
+    <Compile Include="db\ShipmentInfoStatuses.cs" />
+    <Compile Include="db\ShipmentInfoStatusItemsLog.cs" />
+    <Compile Include="db\ShipmentInfoStatusItemsLogs.cs" />
+    <Compile Include="db\ShipmentInfoSubmitLogs.cs" />
+    <Compile Include="db\ShipmentInquiries.cs" />
+    <Compile Include="db\ShipmentInquiryDetails.cs" />
+    <Compile Include="db\ShipmentPlatforms.cs" />
+    <Compile Include="db\Shipments.cs" />
+    <Compile Include="db\ShipmentStatuses.cs" />
+    <Compile Include="db\SubTicket.cs" />
+    <Compile Include="db\Support.cs" />
+    <Compile Include="db\SupportContact.cs" />
+    <Compile Include="db\SuppotStatuses.cs" />
+    <Compile Include="db\SyfaOstanCodes.cs" />
+    <Compile Include="db\SyfaUseTypes.cs" />
+    <Compile Include="db\sysdiagrams.cs" />
+    <Compile Include="db\TaxLimitations.cs" />
+    <Compile Include="db\TempMessage.cs" />
+    <Compile Include="db\TempProductInventories.cs" />
+    <Compile Include="db\TempWheatInventories.cs" />
+    <Compile Include="db\Ticket.cs" />
+    <Compile Include="db\TicketAccessLimitation.cs" />
+    <Compile Include="db\TransportationCompanies.cs" />
+    <Compile Include="db\TransportLimitations.cs" />
+    <Compile Include="db\UnitDegrees.cs" />
+    <Compile Include="db\Units.cs" />
+    <Compile Include="db\UnitTypes.cs" />
+    <Compile Include="db\UserCountryDivisions.cs" />
+    <Compile Include="db\UserEntities.cs" />
+    <Compile Include="db\ValidColumnNames.cs" />
+    <Compile Include="db\ViewCountryDivisions.cs" />
+    <Compile Include="db\ViewOrder.cs" />
+    <Compile Include="db\vmGenerateCountryDivisionFlat.cs" />
+    <Compile Include="db\vwAllBanksUnits.cs" />
+    <Compile Include="db\vwAllUsers.cs" />
+    <Compile Include="db\vwBuyerInfo.cs" />
+    <Compile Include="db\vwCountryDivisions.cs" />
+    <Compile Include="db\vwCountryDivision_Pivot.cs" />
+    <Compile Include="db\vwUnits.cs" />
+    <Compile Include="db\vwUsers.cs" />
+    <Compile Include="db\WheatImportInfos.cs" />
+    <Compile Include="db\WheatImportLogs.cs" />
+    <Compile Include="db\WheatImports.cs" />
+    <Compile Include="db\WheatInventories.cs" />
+    <Compile Include="db\Yeast.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IUserContext.cs" />
+    <Compile Include="NewForm.aspx.cs">
+      <DependentUpon>NewForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewForm.aspx.designer.cs">
+      <DependentUpon>NewForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserContext.cs" />
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58717</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44304/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
