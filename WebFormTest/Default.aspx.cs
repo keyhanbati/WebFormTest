@@ -129,6 +129,57 @@ namespace WebFormTest
         }
 
 
+        public async Task<SecurityResult<UserModel>> Login(LoginModel model, CancellationToken cancellationToken = default, bool isDevelopment = false)
+        {
+            var ip = string.IsNullOrEmpty(model.IP) ? new Utils().getClientIPAddress(_httpContextAccessor.HttpContext.Request) : model.IP;
+            int failLoginCount = GetFailLoginCount(ip);
+            if (failLoginCount >= 5)
+            {
+                await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+                return SecurityResult<UserModel>.Fail("خطا - " + UserISlockMessage);
+            }
+            logModel.UserName = model.Username ?? string.Empty;
+            var userValidation = await GetValidUser(model);
+            if (userValidation.IsSuccessful)
+            {
+                UpdateFailLoginRequestCache(ip, true);
+
+                if (!userValidation.Data.IsActive)
+                {
+                    await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+
+                    return SecurityResult<UserModel>.Fail("کاربر غیر فعال می باشد.");
+                }
+                ///TODO: MAleki Check BuyerAgent Active & Person Active
+
+                if (!string.IsNullOrEmpty(model.OtpCode) && !isDevelopment)
+                {
+#if !DEBUG
+                    var verifyOtpCodeResult = await userManager.VerifyChangePhoneNumberTokenAsync(userValidation.Data, model.OtpCode, userValidation.Data.PhoneNumber);
+                    if (!verifyOtpCodeResult)
+                    {
+                        await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+                        return SecurityResult<UserModel>.Fail("کد یک بار مصرف صحیح وارد نشده است .");
+                    }
+#endif
+                }
+
+                var userRoles = await GetUserRoles(userValidation.Data);
+                var authClaims = await _userClaimService.GetUserClaimsAsync(userValidation.Data, userRoles);
+                var token = GenerateToken(authClaims);
+                var userViewRoles = await GetUserViewRoles(userRoles);
+                var UserModel = userValidation.Data.ToUserModel(new JwtSecurityTokenHandler().WriteToken(token), userViewRoles);
+                UserModel.IsPassExpired = userRoles.Contains(UserRoles.ChangePass);
+                var claims = (await userManager.GetClaimsAsync(userValidation.Data)).ToList();
+                UserModel.Claims = claims.ToDictionary(x => x.Type.ToString(), x => x.Value.ToString());
+                await AddLog(GetCurrentMethod(), UserModel, cancellationToken: cancellationToken, model);
+                return SecurityResult<UserModel>.Ok(_configuration.Expires, SuccessMessage, UserModel);
+            }
+            await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+            UpdateFailLoginRequestCache(ip);
+            return SecurityResult<UserModel>.Fail(userValidation.Message);
+        }
+
 
         //public List<string> GetRoles(string token)
         //{
@@ -218,3 +269,12 @@ namespace WebFormTest
     }
 }
 
+
+
+// ,
+//   "JWT": {
+//     "ValidAudience": "http://localhost:4200",
+//     "ValidIssuer": "http://localhost:61955",
+//     "Secret": "3916cd41ae1636dbd953a2f44a93a7df03eadu2107cd94febb6044c3ee7c0f3dabf715d62be8ccbfe1e71216eeckeb5d357838789ab20f9fe7907453c8a991513dde447c77fb1b4s14355a77e4827510a422038c7b92b938b9a21beb1eef0z6775892e372e1f56d9a76e9e1a66263aa06976c7fa59e0acf5ac8b7d3d2306e7120f1c5262e9a03e279590953c68dc4357d62da84ec02e9b05b719e20c458f445488f7d374e811789f1ef308d7012c7fecdfe15a28b7af9ebke1460f74c596936ee6913bdbab6d243f197fd0e0ca0af2bced7ded91c55b864793789014913d19cf8e3e27a8c614d75580d4f440164710e5e350726b8aa7b9cfb79b05e7512dfa074a690d8073452bae64d56e57b578e58e287560e5430846b7c941d9dba44a22c893146d64a2d8db758682ff5d1ac1129717b8e22d437ec7e6eb714622fcccd89c18038be691e505f540369cb3ff25e1f03f237ed25a21058c01a0519a2c1f6625b957c15818dce9dd905cb7feb9641c1ddf23c2c5f2b9ef4d3b42c426166d4d87e8b15c72147e4bbfb362c83b00691944e86992f9864e25e4dbd142812386ae147bad6411f0921bbb75edb05ef25741e115e2b5ea5b0a02617d074b5f41b5be4f20cpbaf491ea0265f62fe0025db996f7c1719c75df9c980e967b3645t0ei61a03df663433be241220607b594b44b2a52c8a92671bu79b0cb3227e5e00e8cc8e4",
+//     "ExpiresMinutes": "60"
+//   }
