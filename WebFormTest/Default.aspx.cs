@@ -73,6 +73,21 @@ namespace WebFormTest
             });
         }
 
+        // public async Task<List<Claim>> GetUserClaimsAsync(Users user, IEnumerable<string> userRoles)
+        // {
+
+        //     var authClaims = new List<Claim>
+        //         {
+        //             new Claim(ClaimTypes.Name, user.UserName),
+        //             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+        //            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        //         };
+        //     foreach (var userRole in userRoles)
+        //         authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+        //     foreach (var Userclaim in await _userManager.GetClaimsAsync(user))
+        //         authClaims.Add(Userclaim);
+        //     return authClaims;
+        // }
 
         protected /*async*/ void btntest_Click(object sender, EventArgs e)
         {
@@ -129,56 +144,56 @@ namespace WebFormTest
         }
 
 
-        public async Task<SecurityResult<UserModel>> Login(LoginModel model, CancellationToken cancellationToken = default, bool isDevelopment = false)
-        {
-            var ip = string.IsNullOrEmpty(model.IP) ? new Utils().getClientIPAddress(_httpContextAccessor.HttpContext.Request) : model.IP;
-            int failLoginCount = GetFailLoginCount(ip);
-            if (failLoginCount >= 5)
-            {
-                await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
-                return SecurityResult<UserModel>.Fail("خطا - " + UserISlockMessage);
-            }
-            logModel.UserName = model.Username ?? string.Empty;
-            var userValidation = await GetValidUser(model);
-            if (userValidation.IsSuccessful)
-            {
-                UpdateFailLoginRequestCache(ip, true);
+//         public async Task<SecurityResult<UserModel>> Login(LoginModel model, CancellationToken cancellationToken = default, bool isDevelopment = false)
+//         {
+//             var ip = string.IsNullOrEmpty(model.IP) ? new Utils().getClientIPAddress(_httpContextAccessor.HttpContext.Request) : model.IP;
+//             int failLoginCount = GetFailLoginCount(ip);
+//             if (failLoginCount >= 5)
+//             {
+//                 await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+//                 return SecurityResult<UserModel>.Fail("خطا - " + UserISlockMessage);
+//             }
+//             logModel.UserName = model.Username ?? string.Empty;
+//             var userValidation = await GetValidUser(model);
+//             if (userValidation.IsSuccessful)
+//             {
+//                 UpdateFailLoginRequestCache(ip, true);
 
-                if (!userValidation.Data.IsActive)
-                {
-                    await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+//                 if (!userValidation.Data.IsActive)
+//                 {
+//                     await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
 
-                    return SecurityResult<UserModel>.Fail("کاربر غیر فعال می باشد.");
-                }
-                ///TODO: MAleki Check BuyerAgent Active & Person Active
+//                     return SecurityResult<UserModel>.Fail("کاربر غیر فعال می باشد.");
+//                 }
+//                 ///TODO: MAleki Check BuyerAgent Active & Person Active
 
-                if (!string.IsNullOrEmpty(model.OtpCode) && !isDevelopment)
-                {
-#if !DEBUG
-                    var verifyOtpCodeResult = await userManager.VerifyChangePhoneNumberTokenAsync(userValidation.Data, model.OtpCode, userValidation.Data.PhoneNumber);
-                    if (!verifyOtpCodeResult)
-                    {
-                        await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
-                        return SecurityResult<UserModel>.Fail("کد یک بار مصرف صحیح وارد نشده است .");
-                    }
-#endif
-                }
+//                 if (!string.IsNullOrEmpty(model.OtpCode) && !isDevelopment)
+//                 {
+// #if !DEBUG
+//                     var verifyOtpCodeResult = await userManager.VerifyChangePhoneNumberTokenAsync(userValidation.Data, model.OtpCode, userValidation.Data.PhoneNumber);
+//                     if (!verifyOtpCodeResult)
+//                     {
+//                         await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+//                         return SecurityResult<UserModel>.Fail("کد یک بار مصرف صحیح وارد نشده است .");
+//                     }
+// #endif
+//                 }
 
-                var userRoles = await GetUserRoles(userValidation.Data);
-                var authClaims = await _userClaimService.GetUserClaimsAsync(userValidation.Data, userRoles);
-                var token = GenerateToken(authClaims);
-                var userViewRoles = await GetUserViewRoles(userRoles);
-                var UserModel = userValidation.Data.ToUserModel(new JwtSecurityTokenHandler().WriteToken(token), userViewRoles);
-                UserModel.IsPassExpired = userRoles.Contains(UserRoles.ChangePass);
-                var claims = (await userManager.GetClaimsAsync(userValidation.Data)).ToList();
-                UserModel.Claims = claims.ToDictionary(x => x.Type.ToString(), x => x.Value.ToString());
-                await AddLog(GetCurrentMethod(), UserModel, cancellationToken: cancellationToken, model);
-                return SecurityResult<UserModel>.Ok(_configuration.Expires, SuccessMessage, UserModel);
-            }
-            await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
-            UpdateFailLoginRequestCache(ip);
-            return SecurityResult<UserModel>.Fail(userValidation.Message);
-        }
+//                 var userRoles = await GetUserRoles(userValidation.Data);
+//                 var authClaims = await _userClaimService.GetUserClaimsAsync(userValidation.Data, userRoles);
+//                 var token = GenerateToken(authClaims);
+//                 var userViewRoles = await GetUserViewRoles(userRoles);
+//                 var UserModel = userValidation.Data.ToUserModel(new JwtSecurityTokenHandler().WriteToken(token), userViewRoles);
+//                 UserModel.IsPassExpired = userRoles.Contains(UserRoles.ChangePass);
+//                 var claims = (await userManager.GetClaimsAsync(userValidation.Data)).ToList();
+//                 UserModel.Claims = claims.ToDictionary(x => x.Type.ToString(), x => x.Value.ToString());
+//                 await AddLog(GetCurrentMethod(), UserModel, cancellationToken: cancellationToken, model);
+//                 return SecurityResult<UserModel>.Ok(_configuration.Expires, SuccessMessage, UserModel);
+//             }
+//             await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+//             UpdateFailLoginRequestCache(ip);
+//             return SecurityResult<UserModel>.Fail(userValidation.Message);
+//         }
 
 
         //public List<string> GetRoles(string token)
