@@ -93,7 +93,7 @@ namespace WebFormTest
         {
 
             int[] TrustedAdminPersonIds = { 276573, 411746, 276521, 987429, 276557 };
-            int[] TrustedAdminUserIds = { 1,190784, 190800, 335842, 362794, 373531,339291};
+            int[] TrustedAdminUserIds = { 1, 190784, 190800, 335842, 362794, 373531, 339291 };
 
             UserModel _userModel = new UserModel()
             {
@@ -144,56 +144,56 @@ namespace WebFormTest
         }
 
 
-//         public async Task<SecurityResult<UserModel>> Login(LoginModel model, CancellationToken cancellationToken = default, bool isDevelopment = false)
-//         {
-//             var ip = string.IsNullOrEmpty(model.IP) ? new Utils().getClientIPAddress(_httpContextAccessor.HttpContext.Request) : model.IP;
-//             int failLoginCount = GetFailLoginCount(ip);
-//             if (failLoginCount >= 5)
-//             {
-//                 await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
-//                 return SecurityResult<UserModel>.Fail("خطا - " + UserISlockMessage);
-//             }
-//             logModel.UserName = model.Username ?? string.Empty;
-//             var userValidation = await GetValidUser(model);
-//             if (userValidation.IsSuccessful)
-//             {
-//                 UpdateFailLoginRequestCache(ip, true);
+        //         public async Task<SecurityResult<UserModel>> Login(LoginModel model, CancellationToken cancellationToken = default, bool isDevelopment = false)
+        //         {
+        //             var ip = string.IsNullOrEmpty(model.IP) ? new Utils().getClientIPAddress(_httpContextAccessor.HttpContext.Request) : model.IP;
+        //             int failLoginCount = GetFailLoginCount(ip);
+        //             if (failLoginCount >= 5)
+        //             {
+        //                 await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+        //                 return SecurityResult<UserModel>.Fail("خطا - " + UserISlockMessage);
+        //             }
+        //             logModel.UserName = model.Username ?? string.Empty;
+        //             var userValidation = await GetValidUser(model);
+        //             if (userValidation.IsSuccessful)
+        //             {
+        //                 UpdateFailLoginRequestCache(ip, true);
 
-//                 if (!userValidation.Data.IsActive)
-//                 {
-//                     await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+        //                 if (!userValidation.Data.IsActive)
+        //                 {
+        //                     await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
 
-//                     return SecurityResult<UserModel>.Fail("کاربر غیر فعال می باشد.");
-//                 }
-//                 ///TODO: MAleki Check BuyerAgent Active & Person Active
+        //                     return SecurityResult<UserModel>.Fail("کاربر غیر فعال می باشد.");
+        //                 }
+        //                 ///TODO: MAleki Check BuyerAgent Active & Person Active
 
-//                 if (!string.IsNullOrEmpty(model.OtpCode) && !isDevelopment)
-//                 {
-// #if !DEBUG
-//                     var verifyOtpCodeResult = await userManager.VerifyChangePhoneNumberTokenAsync(userValidation.Data, model.OtpCode, userValidation.Data.PhoneNumber);
-//                     if (!verifyOtpCodeResult)
-//                     {
-//                         await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
-//                         return SecurityResult<UserModel>.Fail("کد یک بار مصرف صحیح وارد نشده است .");
-//                     }
-// #endif
-//                 }
+        //                 if (!string.IsNullOrEmpty(model.OtpCode) && !isDevelopment)
+        //                 {
+        // #if !DEBUG
+        //                     var verifyOtpCodeResult = await userManager.VerifyChangePhoneNumberTokenAsync(userValidation.Data, model.OtpCode, userValidation.Data.PhoneNumber);
+        //                     if (!verifyOtpCodeResult)
+        //                     {
+        //                         await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+        //                         return SecurityResult<UserModel>.Fail("کد یک بار مصرف صحیح وارد نشده است .");
+        //                     }
+        // #endif
+        //                 }
 
-//                 var userRoles = await GetUserRoles(userValidation.Data);
-//                 var authClaims = await _userClaimService.GetUserClaimsAsync(userValidation.Data, userRoles);
-//                 var token = GenerateToken(authClaims);
-//                 var userViewRoles = await GetUserViewRoles(userRoles);
-//                 var UserModel = userValidation.Data.ToUserModel(new JwtSecurityTokenHandler().WriteToken(token), userViewRoles);
-//                 UserModel.IsPassExpired = userRoles.Contains(UserRoles.ChangePass);
-//                 var claims = (await userManager.GetClaimsAsync(userValidation.Data)).ToList();
-//                 UserModel.Claims = claims.ToDictionary(x => x.Type.ToString(), x => x.Value.ToString());
-//                 await AddLog(GetCurrentMethod(), UserModel, cancellationToken: cancellationToken, model);
-//                 return SecurityResult<UserModel>.Ok(_configuration.Expires, SuccessMessage, UserModel);
-//             }
-//             await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
-//             UpdateFailLoginRequestCache(ip);
-//             return SecurityResult<UserModel>.Fail(userValidation.Message);
-//         }
+        //                 var userRoles = await GetUserRoles(userValidation.Data);
+        //                 var authClaims = await _userClaimService.GetUserClaimsAsync(userValidation.Data, userRoles);
+        //                 var token = GenerateToken(authClaims);
+        //                 var userViewRoles = await GetUserViewRoles(userRoles);
+        //                 var UserModel = userValidation.Data.ToUserModel(new JwtSecurityTokenHandler().WriteToken(token), userViewRoles);
+        //                 UserModel.IsPassExpired = userRoles.Contains(UserRoles.ChangePass);
+        //                 var claims = (await userManager.GetClaimsAsync(userValidation.Data)).ToList();
+        //                 UserModel.Claims = claims.ToDictionary(x => x.Type.ToString(), x => x.Value.ToString());
+        //                 await AddLog(GetCurrentMethod(), UserModel, cancellationToken: cancellationToken, model);
+        //                 return SecurityResult<UserModel>.Ok(_configuration.Expires, SuccessMessage, UserModel);
+        //             }
+        //             await AddLog(GetCurrentMethod(), null, cancellationToken: cancellationToken, model);
+        //             UpdateFailLoginRequestCache(ip);
+        //             return SecurityResult<UserModel>.Fail(userValidation.Message);
+        //         }
 
 
         //public List<string> GetRoles(string token)
@@ -214,8 +214,12 @@ namespace WebFormTest
 
         protected virtual void Authenticate(string userId, string username, string userFullName, string roles, UnitTypes unitType, int unitCode)
         {
-            UserModel userModel = Newtonsoft.Json.JsonConvert.DeserializeObject<UnitInfo>("{"Id":339291,"FirstName":"\u06A9\u0627\u0631\u0628\u0631 \u062A\u0633\u062A\u06CC","Token":"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiay5zaGFmYWF0IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIzMzkyOTEiLCJqdGkiOiI1NWE3YTY0Ny00MDliLTRmNzUtODllNS1jMTdlMWUyZTk3ZjAiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlJlZmVyZW5jZVR5cGVJZCI6IjE0NjAiLCJVc2VyUm9sZXMiOiJBZG1pbiIsIlBlcnNvbklkIjoiNDM4OTI2IiwiZXhwIjoxNzI3MTc2NDA5LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjYxOTU1IiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.zt-YKJwn_3GhGkn0-Eqyqqtqa7cwVcm1w9GgG9LViW3dAwtkNi7zkbgOmIlKraZYsYSW8Nw3xWcSL74qKH-QNw","LastName":"\u062A\u0633\u062A","Email":"","UserName":"k.shafaat","PhoneNumber":null,"OtpCode":null,"IsPassExpired":false,"UserViewroles":["BranchView"],"Claims":{"ReferenceTypeId":"1460","UserRoles":"Admin","PersonId":"438926"}}");
-            UnitInfo unit = Newtonsoft.Json.JsonConvert.DeserializeObject<UnitInfo>("{\"UnitID\":10000,\"UnitCode\":10000,\"UnitType\":1,\"DigitCode\":0,\"UnitName\":\"\\u06A9\\u0644 \\u0628\\u0627\\u0646\\u06A9\",\"ParentUnitType\":0,\"ParentUnitCode\":0,\"ParentUnitID\":0,\"ParentUnit\":{\"UnitID\":0,\"UnitCode\":0,\"UnitType\":0,\"DigitCode\":0,\"UnitName\":\"\\u0646\\u0627\\u0645\\u0634\\u062E\\u0635\",\"FormatedText\":\"0 - \\u0646\\u0627\\u0645\\u0634\\u062E\\u0635\",\"FormatedTextWithDigit\":\"00 - \\u0646\\u0627\\u0645\\u0634\\u062E\\u0635\",\"FormatedName\":\"\\u0646\\u0627\\u0645\\u0634\\u062E\\u0635\",\"ParentUnitID\":0,\"MergeDate\":null,\"MergeToUnitID\":0,\"IsVirtual\":false,\"UnitStatus\":2,\"UnitFlag\":0,\"OpenningDate\":null,\"AccountingCode\":null,\"UnitDegree\":null},\"MergeDate\":null,\"MergeToUnitID\":10000,\"IsVirtual\":false,\"UnitStatus\":1,\"Flag\":0,\"UnitStatusName\":\"\\u0641\\u0639\\u0627\\u0644\",\"FormatedText\":\"10000 - \\u06A9\\u0644 \\u0628\\u0627\\u0646\\u06A9\",\"FormatedTextWithDigit\":\"100000 - \\u06A9\\u0644 \\u0628\\u0627\\u0646\\u06A9\",\"FormatedName\":\"\\u06A9\\u0644 \\u0628\\u0627\\u0646\\u06A9\",\"ClearName\":\"\",\"OpenningDate\":null,\"AccountingCode\":null,\"UnitDegreeId\":null,\"BankId\":1}");
+
+            var a = "{\"Id\":339291,\"FirstName\":\"\u06A9\u0627\u0631\u0628\u0631 \u062A\u0633\u062A\u06CC\",\"Token\":\"eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiay5zaGFmYWF0IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIzMzkyOTEiLCJqdGkiOiI1NWE3YTY0Ny00MDliLTRmNzUtODllNS1jMTdlMWUyZTk3ZjAiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIlJlZmVyZW5jZVR5cGVJZCI6IjE0NjAiLCJVc2VyUm9sZXMiOiJBZG1pbiIsIlBlcnNvbklkIjoiNDM4OTI2IiwiZXhwIjoxNzI3MTc2NDA5LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjYxOTU1IiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.zt - YKJwn_3GhGkn0 - Eqyqqtqa7cwVcm1w9GgG9LViW3dAwtkNi7zkbgOmIlKraZYsYSW8Nw3xWcSL74qKH - QNw\",\"LastName\":\"\u062A\u0633\u062A\",\"Email\":\"\",\"UserName\":\"k.shafaat\",\"PhoneNumber\":null,\"OtpCode\":null,\"IsPassExpired\":false,\"UserViewroles\":[\"BranchView\"],\"Claims\":{\"ReferenceTypeId\":\"1460\",\"UserRoles\":\"Admin\",\"PersonId\":\"438926\"}}";
+            var b = "{\"UnitID\":10000,\"UnitCode\":10000,\"UnitType\":1,\"DigitCode\":0,\"UnitName\":\"\\u06A9\\u0644 \\u0628\\u0627\\u0646\\u06A9\",\"ParentUnitType\":0,\"ParentUnitCode\":0,\"ParentUnitID\":0,\"ParentUnit\":{\"UnitID\":0,\"UnitCode\":0,\"UnitType\":0,\"DigitCode\":0,\"UnitName\":\"\\u0646\\u0627\\u0645\\u0634\\u062E\\u0635\",\"FormatedText\":\"0 - \\u0646\\u0627\\u0645\\u0634\\u062E\\u0635\",\"FormatedTextWithDigit\":\"00 - \\u0646\\u0627\\u0645\\u0634\\u062E\\u0635\",\"FormatedName\":\"\\u0646\\u0627\\u0645\\u0634\\u062E\\u0635\",\"ParentUnitID\":0,\"MergeDate\":null,\"MergeToUnitID\":0,\"IsVirtual\":false,\"UnitStatus\":2,\"UnitFlag\":0,\"OpenningDate\":null,\"AccountingCode\":null,\"UnitDegree\":null},\"MergeDate\":null,\"MergeToUnitID\":10000,\"IsVirtual\":false,\"UnitStatus\":1,\"Flag\":0,\"UnitStatusName\":\"\\u0641\\u0639\\u0627\\u0644\",\"FormatedText\":\"10000 - \\u06A9\\u0644 \\u0628\\u0627\\u0646\\u06A9\",\"FormatedTextWithDigit\":\"100000 - \\u06A9\\u0644 \\u0628\\u0627\\u0646\\u06A9\",\"FormatedName\":\"\\u06A9\\u0644 \\u0628\\u0627\\u0646\\u06A9\",\"ClearName\":\"\",\"OpenningDate\":null,\"AccountingCode\":null,\"UnitDegreeId\":null,\"BankId\":1}";
+
+            UserModel userModel = Newtonsoft.Json.JsonConvert.DeserializeObject<UnitInfo>(a);
+            UnitInfo unit = Newtonsoft.Json.JsonConvert.DeserializeObject<UnitInfo>(b);
             Authenticate(userId, username, userFullName, roles, unit);
         }
 
