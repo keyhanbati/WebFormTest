@@ -111,14 +111,14 @@ namespace WebFormTest
                 _userModel.FirstName + " " + _userModel.LastName, string.Join(",", roles.ToArray()), UnitTypes.HeadQuarter,
                 10000);
             //List<DbSpModel> retVal =Task.Run(async () => {return await FetchFromSp(); }).GetAwaiter().GetResult();
-            FetchFromSp().
-                ContinueWith(t =>
-                {
-                    List<DbSpModel> retVal = t.Result;
-                    GridView1.DataSource = retVal;
-                    GridView1.DataBind();
-                },
-                TaskContinuationOptions.OnlyOnFaulted);
+            //FetchFromSp().
+            //    ContinueWith(t =>
+            //    {
+            //        List<DbSpModel> retVal = t.Result;
+            //        GridView1.DataSource = retVal;
+            //        GridView1.DataBind();
+            //    },
+            //    TaskContinuationOptions.OnlyOnFaulted);
             //List<DbSpModel> retVal = /*await*/ FetchFromSp().Result;
         }
 
